@@ -63,13 +63,17 @@ public class loco : MonoBehaviour {
 		
 	}
 
-	public void OnTriggerEnter(Collider other)
+	public void SessionOver()
 	{
-		if(other.tag=="explosive")
-		{
-			//game over
-			//check other player's status
-		}
+		if(pNum == 1)
+			Data.p2_Win++ ;
+
+		else if(pNum == 2)
+			Data.p1_Win++ ;
+
+		
+		Time.timeScale =0f;
+
 	}
 
 }

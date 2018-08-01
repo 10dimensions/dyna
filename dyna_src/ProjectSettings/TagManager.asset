@@ -6,6 +6,7 @@ TagManager:
   tags:
   - metal
   - laser
+  - ko
   layers:
   - Default
   - TransparentFX
