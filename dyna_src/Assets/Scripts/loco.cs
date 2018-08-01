@@ -42,6 +42,12 @@ public class loco : MonoBehaviour {
 		if (Input.GetKey(KeyCode.DownArrow)){
 			transform.position += Vector3.back* speed * Time.deltaTime;
 		}
+
+
+		if(Input.GetKey(KeyCode.Space))
+		{
+			LaserAtatck();
+		}
 	}
 
 
@@ -63,15 +69,24 @@ public class loco : MonoBehaviour {
 		
 	}
 
+
+	public void LaserAtatck()
+	{
+
+	}
+
+
 	public void SessionOver()
 	{
 		if(pNum == 1)
-			Data.p2_Win++ ;
+			Data.Instance.p2_Win++ ;
 
 		else if(pNum == 2)
-			Data.p1_Win++ ;
+			Data.Instance.p1_Win++ ;
 
-		
+
+		GameObject.FindGameObjectWithTag("ko").SetActive(true);
+
 		Time.timeScale =0f;
 
 	}
