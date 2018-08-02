@@ -16,9 +16,10 @@ public class laser : MonoBehaviour
 			case "glass":
 
 				Destroy(other.gameObject);
-				Data.Instance.powerUpInsta(other.gameObject.transform);
+				GameObject sessioObj = GameObject.FindWithTag("session"); 
+				sessioObj.GetComponent<session>().powerUpInsta(other.gameObject.transform);
 				Destroy(this.gameObject);
-				
+
 				break;
 
 			case "Player":

@@ -13,6 +13,7 @@ public class loco : MonoBehaviour {
 	public GameObject bolt;
 	public GameObject timer;
 	public Text expl;
+
 	void Start () 
 	{
 		character = this.gameObject;	
@@ -101,9 +102,22 @@ public class loco : MonoBehaviour {
 	}
 
 
+	public void OnTriggerEnter(Collider pUp)
+	{	
+		switch(pUp.gameObject.tag)
+		{
+			case "bolt":
+				
+				Destroy(pUp.gameObject);
+				break;
+		}
+	}
+
+
 	public void SessionOverLocal()
 	{
-		Data.Instance.SessionOver(pNum);
+		GameObject sessO = GameObject.FindWithTag("session"); 
+		sessO.GetComponent<session>().SessionOver(pNum);
 	}
 
 }
