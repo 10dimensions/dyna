@@ -12,13 +12,13 @@ public class session : MonoBehaviour {
 
 	public void Start()
 	{
-		StartCoroutine(StartCountdown(55));
-		Debug.Log("countdown starts");
+		StartCoroutine(StartCountdown(55f));
+		
 	}
 
 	public IEnumerator StartCountdown(float countdownValue)
 	{	
-
+		Debug.Log("countdown starts");
 		float currCountdownValue = countdownValue;
 		while (currCountdownValue > 0)
 		{
@@ -59,7 +59,8 @@ public class session : MonoBehaviour {
 	}
 
 	 public void SceneLoad(string nam)
-    {
-        SceneManager.LoadScene(nam);
+    {	
+		print(nam);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
