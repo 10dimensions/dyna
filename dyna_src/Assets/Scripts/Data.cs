@@ -23,4 +23,20 @@ public class Data : MonoBehaviour {
             _instance = this;
         }
     }
+
+
+	public void SessionOver(int pTNum)
+	{
+		if(pTNum == 1)
+			Data.Instance.p2_Win++ ;
+
+		else if(pTNum == 2)
+			Data.Instance.p1_Win++ ;
+
+
+		GameObject.FindGameObjectWithTag("ko").SetActive(true);
+
+		Time.timeScale =0f;
+
+	}
 }

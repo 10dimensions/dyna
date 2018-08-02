@@ -76,19 +76,29 @@ public class loco : MonoBehaviour {
 	}
 
 
-	public void SessionOver()
+	public IEnumerator speedPU()
+	{	
+
+		yield return null;
+
+		//drop speed
+		//remove indicator
+	}
+
+
+	public IEnumerator BeamLengthPU()
+	{	
+
+		yield return null;
+
+		//drop speed
+		//remove indicator
+	}
+
+
+	public void SessionOverLocal()
 	{
-		if(pNum == 1)
-			Data.Instance.p2_Win++ ;
-
-		else if(pNum == 2)
-			Data.Instance.p1_Win++ ;
-
-
-		GameObject.FindGameObjectWithTag("ko").SetActive(true);
-
-		Time.timeScale =0f;
-
+		Data.Instance.SessionOver(pNum);
 	}
 
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class explode : MonoBehaviour {
 
 	public Transform[] laserBeams;
+	public float scaleLength = 1.4f;   //beam length
 	
 	void Start () 
 	{
