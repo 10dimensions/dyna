@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class loco : MonoBehaviour {
 
@@ -8,6 +9,10 @@ public class loco : MonoBehaviour {
 	private GameObject character;
 	private float speed= 4.0f;
 	public int pNum;
+
+	public GameObject bolt;
+	public GameObject timer;
+	public Text expl;
 	void Start () 
 	{
 		character = this.gameObject;	
@@ -91,7 +96,7 @@ public class loco : MonoBehaviour {
 
 		yield return null;
 
-		//drop speed
+		//increase length
 		//remove indicator
 	}
 

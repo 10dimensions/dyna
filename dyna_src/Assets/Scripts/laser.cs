@@ -6,26 +6,29 @@ public class laser : MonoBehaviour
 {	
 	public bool hitMetal = false;
 	public void OnTriggerEnter(Collider other)
-	{
-		if(other.gameObject.tag=="metal")
+	{	
+		switch(other.gameObject.tag)
 		{
-			Destroy(this.gameObject);
+			case "metal":
+				Destroy(this.gameObject);
+				break;
+
+			case "glass":
+
+				Destroy(other.gameObject);
+				Data.Instance.powerUpInsta(other.gameObject.transform);
+				Destroy(this.gameObject);
+				
+				break;
+
+			case "Player":
+
+				Destroy(this.gameObject);
+				break;
+
 		}
 
-		else if(other.gameObject.tag == "glass")
-		{
-			
-
-			Destroy(this.gameObject);
-
-		}
-
-		else if(other.gameObject.tag=="Player")
-		{	
-			// game over, change game state
-
-			Destroy(this.gameObject);
-		}
 	}
+
 	
 }

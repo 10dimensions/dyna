@@ -11,6 +11,8 @@ public class Data : MonoBehaviour {
 	public int p1_Win=0;
 	public int p2_Win=0;
 
+	public GameObject[] pUps;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -24,6 +26,11 @@ public class Data : MonoBehaviour {
         }
     }
 
+	public void powerUpInsta(Transform glass)
+	{	
+		int rand = Random.Range(0,pUps.Length);
+		GameObject pUpInsta = Instantiate(pUps[0], glass.localPosition, glass.localRotation) as GameObject;
+	}
 
 	public void SessionOver(int pTNum)
 	{

@@ -24,7 +24,7 @@ public class explode : MonoBehaviour {
 		foreach(Transform t in laserBeams)
 		{
 			//iTween.ScaleTo(t.gameObject, new Vector3(t.localScale.x, t.localScale.y, 1.4f), 0.7f);
-			StartCoroutine(laserShootI(t, 0.15f)) ;
+			StartCoroutine(laserShootI(t, 0.4f)) ;
 		}
 		
 	}
