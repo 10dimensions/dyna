@@ -26,7 +26,7 @@ public class singeletonData : MonoBehaviour {
     }
 
     public void SceneLoad(string nam)
-    {
+    {	
         SceneManager.LoadScene(nam);
     }
 

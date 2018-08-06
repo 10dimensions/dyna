@@ -9,6 +9,9 @@ TagManager:
   - ko
   - glass
   - session
+  - bolt
+  - dyna
+  - timer
   layers:
   - Default
   - TransparentFX

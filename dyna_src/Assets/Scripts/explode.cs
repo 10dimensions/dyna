@@ -31,8 +31,10 @@ public class explode : MonoBehaviour {
 
 	public IEnumerator laserShootI(Transform laser,float dur)
 	{	
+		yield return new WaitForSeconds(2f); 
+	
 		Vector3 originalScale = laser.transform.localScale;
-        Vector3 destinationScale = new Vector3(originalScale.x, originalScale.y, 1.4f);
+        Vector3 destinationScale = new Vector3(originalScale.x, originalScale.y, scaleLength);
          
          float currentTime = 0.0f;
 

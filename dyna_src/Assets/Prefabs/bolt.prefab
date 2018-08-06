@@ -21,11 +21,11 @@ GameObject:
   - component: {fileID: 4934948693593884}
   m_Layer: 0
   m_Name: bolt
-  m_TagString: Untagged
+  m_TagString: bolt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1874158347673414
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,9 +36,10 @@ GameObject:
   - component: {fileID: 4950039600466494}
   - component: {fileID: 33950490699977814}
   - component: {fileID: 23176042667462204}
+  - component: {fileID: 65184895007714206}
   m_Layer: 0
   m_Name: lightning bolt
-  m_TagString: Untagged
+  m_TagString: bolt
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +51,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1702300277250118}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.3, y: -72.32, z: 23.119158}
+  m_LocalPosition: {x: 4.09706, y: -72.608, z: 25.137274}
   m_LocalScale: {x: 0.14603986, y: 0.14603986, z: 0.14603986}
   m_Children:
   - {fileID: 4950039600466494}
@@ -112,3 +113,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1874158347673414}
   m_Mesh: {fileID: 4300000, guid: defbf9de8e94d45429ba5c7f52f3637d, type: 3}
+--- !u!65 &65184895007714206
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1874158347673414}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01424581, y: 0.0531717, z: 0.00030876053}
+  m_Center: {x: -0.0052717654, y: 0.00021560496, z: 0.009900759}

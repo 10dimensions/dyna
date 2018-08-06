@@ -9,7 +9,13 @@ public class loco : MonoBehaviour {
 	private GameObject character;
 	private float speed= 4.0f;
 	public int pNum;
-
+	
+	public GameObject explosive;
+	public int explosiveCount=1;
+	public bool explAvailable=true;
+	
+	public float beamLength=1.4f;
+	
 	public GameObject bolt;
 	public GameObject timer;
 	public Text expl;
@@ -23,7 +29,7 @@ public class loco : MonoBehaviour {
 	{
 		if(pNum == 1)
 		{	
-			p1Move();
+			p1Move();           //locomotion
 		}
 
 		else if(pNum==2)
@@ -50,9 +56,12 @@ public class loco : MonoBehaviour {
 		}
 
 
-		if(Input.GetKey(KeyCode.Space))
+		if(Input.GetKey(KeyCode.RightShift))
 		{
-			LaserAtatck();
+			if(explAvailable)
+			{
+				StartCoroutine(explRoutine());
+			}
 		}
 	}
 
@@ -70,50 +79,137 @@ public class loco : MonoBehaviour {
 		}
 		if (Input.GetKey(KeyCode.S)){
 			transform.position += Vector3.back* speed * Time.deltaTime;
-		}		
+		}
+		if (Input.GetKey(KeyCode.LeftShift))
+		{
+			if(explAvailable)
+			{
+				StartCoroutine(explRoutine());
+				Debug.Log("routine");
+			}
+			
+		}
 
+	}
+	
+	//inst laser explosive
+	public IEnumerator explRoutine()
+	{	
+		
+		GameObject explObj = Instantiate(explosive, this.gameObject.transform.position, explosive.transform.rotation) as GameObject;
+		explObj.GetComponent<explode>().scaleLength = beamLength;
+		explObj.SetActive(true);
+		
+		explAvailable=false;
+		float t=0f;;
+		
+		if(explosiveCount == 2)
+		{t=1f; }
+		else 
+		{t=2.5f;}
+		
+		explosiveCount--;
+		yield return new WaitForSeconds(t);
+		
+		
+		
+		explAvailable=true;
+		
+		if(explosiveCount == 0)
+			explosiveCount++;
+	}
+	
+	
+	//speed powerUp
+	public IEnumerator speedPU()
+	{	 
+		speed*=2f;
+		timer.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+	
+		timer.transform.parent.gameObject.SetActive(true);
+		iTween.ValueTo(timer, iTween.Hash(  
+						"from", timer.GetComponent<RectTransform>().localScale.x,
+						"to",   0,
+						"time", 7,
+						"onupdatetarget", this.gameObject,
+						"onupdate", "Sdummy"	));
+						
+		yield return new WaitForSeconds(7f);
+		
+		speed/=2f;
+		timer.transform.parent.gameObject.SetActive(false);
 		
 	}
-
-
-	public void LaserAtatck()
+	
+	public void Sdummy(float x)
 	{
-
+		timer.GetComponent<RectTransform>().localScale = new Vector3(x, 1f, 1f);
 	}
-
-
-	public IEnumerator speedPU()
-	{	
-
-		yield return null;
-
-		//drop speed
-		//remove indicator
-	}
-
-
+	
+	
+	//LaserLengthPowerUp
 	public IEnumerator BeamLengthPU()
 	{	
 
-		yield return null;
-
-		//increase length
-		//remove indicator
+		beamLength = 2.8f;
+		bolt.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+	
+		bolt.transform.parent.gameObject.SetActive(true);
+		iTween.ValueTo(bolt, iTween.Hash(  
+						"from", bolt.GetComponent<RectTransform>().localScale.x,
+						"to",   0,
+						"time", 7,
+						"onupdatetarget", this.gameObject,
+						"onupdate", "Bdummy"	));
+						
+		yield return new WaitForSeconds(7f);
+		
+		beamLength=1.4f;
+		bolt.transform.parent.gameObject.SetActive(false);
+		
+	}
+	
+	public void Bdummy(float x)
+	{
+		bolt.GetComponent<RectTransform>().localScale = new Vector3(x, 1f, 1f);
 	}
 
 
+	//collision check
 	public void OnTriggerEnter(Collider pUp)
 	{	
 		switch(pUp.gameObject.tag)
 		{
 			case "bolt":
+				StartCoroutine(BeamLengthPU());
+				Destroy(pUp.gameObject);
+				break;
+				
+			case "dyna":
 				
 				Destroy(pUp.gameObject);
 				break;
+				
+			case "timer":
+				
+				StartCoroutine(speedPU());
+				Destroy(pUp.gameObject);
+				break;
+				
+			case "laser":
+				
+				SessionOverLocal();
+				break;
 		}
 	}
+	
+	public IEnumerator boltStart()
+	{
+		yield return null;
+	}	
 
-
+	
+	//sessionOver
 	public void SessionOverLocal()
 	{
 		GameObject sessO = GameObject.FindWithTag("session"); 

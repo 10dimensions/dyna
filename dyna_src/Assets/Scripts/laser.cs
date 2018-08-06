@@ -22,14 +22,6 @@ public class laser : MonoBehaviour
 
 				break;
 
-			case "Player":
-
-				Destroy(this.gameObject);
-				break;
-
 		}
-
 	}
-
-	
 }
