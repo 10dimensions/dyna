@@ -17,12 +17,16 @@ public class singeletonData : MonoBehaviour {
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
+			Debug.Log("singelton destroyed");
         } 
 		
 		else 
 		{
             _instance = this;
         }
+		
+		DontDestroyOnLoad(gameObject);
+
     }
 
     public void SceneLoad(string nam)

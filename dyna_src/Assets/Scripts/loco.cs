@@ -109,14 +109,18 @@ public class loco : MonoBehaviour {
 		{t=2.5f;}
 		
 		explosiveCount--;
-		yield return new WaitForSeconds(t);
+		expl.text = explosiveCount.ToString();
 		
+		yield return new WaitForSeconds(t);
 		
 		
 		explAvailable=true;
 		
 		if(explosiveCount == 0)
+		{
 			explosiveCount++;
+			expl.text = explosiveCount.ToString();
+		}
 	}
 	
 	
@@ -186,7 +190,8 @@ public class loco : MonoBehaviour {
 				break;
 				
 			case "dyna":
-				
+				explosiveCount++;
+				expl.text = explosiveCount.ToString();
 				Destroy(pUp.gameObject);
 				break;
 				
